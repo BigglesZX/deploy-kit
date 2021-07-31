@@ -1,0 +1,10 @@
+# version: 2021.1
+
+[Unit]
+Description=gunicorn socket for PROJECT_NAME_ENVIRONMENT_NAME project
+
+[Socket]
+ListenStream=/run/gunicorn_PROJECT_NAME_ENVIRONMENT_NAME.sock
+
+[Install]
+WantedBy=sockets.target

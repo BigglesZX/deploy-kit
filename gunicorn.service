@@ -1,0 +1,16 @@
+# version: 2021.1
+
+[Unit]
+Description=gunicorn daemon for PROJECT_NAME_ENVIRONMENT_NAME project
+Requires=gunicorn_PROJECT_NAME_ENVIRONMENT_NAME.socket
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/home/USER_NAME/sites/PROJECT_NAME/ENVIRONMENT_NAME
+Environment="DJANGO_SETTINGS_MODULE=PROJECT_NAME.config.ENVIRONMENT_NAME.settings"
+ExecStart=/home/USER_NAME/.virtualenvs/PROJECT_NAME_ENVIRONMENT_NAME/bin/gunicorn --config PROJECT_NAME/config/ENVIRONMENT_NAME/gunicorn.conf.py PROJECT_NAME.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
