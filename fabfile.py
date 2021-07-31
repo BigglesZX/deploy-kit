@@ -179,3 +179,10 @@ def django_admin(arguments):
 def migrate():
     ''' Run Django's `migrate` command '''
     django_admin('migrate')
+
+def maintenance(mode):
+    ''' Create/remove the file that triggers maintenance mode in nginx '''
+    if mode == 'on':
+        run('touch %(root)s/%(project)s/config/%(target)s/maintenance.mode' % env)
+    elif mode == 'off':
+        run('rm %(root)s/%(project)s/config/%(target)s/maintenance.mode' % env)
